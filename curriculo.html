@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currículo — Caique Vaccari Muraca</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #050E1D; --blue: #1A56A0; --blue-light: #2A72D0;
+    --accent: #00D4FF; --accent2: #00FF9D;
+    --text: #E8F0FF; --text-muted: #7A9AC0;
+    --card: #0D1F38; --border: rgba(26,86,160,0.3);
+    --grid: rgba(26,86,160,0.07);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 32px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--card);
+    transition: all 0.2s;
+    letter-spacing: 1px;
+  }
+  .back-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+  .cv-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--blue);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* HEADER */
+  .cv-header {
+    background: linear-gradient(135deg, #050E1D 0%, #0A1A30 100%);
+    padding: 36px 44px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cv-name {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+  .cv-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+  .cv-title span { color: var(--accent); }
+  .cv-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .cv-contact {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s;
+  }
+  .cv-contact:hover { color: var(--accent); }
+  .cv-contact::before { content: '▸'; color: var(--blue-light); }
+
+  /* BODY */
+  .cv-body { padding: 32px 44px; }
+
+  .cv-section { margin-bottom: 28px; }
+
+  .cv-section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .cv-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 60px; height: 2px;
+    background: var(--accent);
+  }
+
+  .cv-summary {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  /* EXPERIENCE */
+  .cv-job { margin-bottom: 22px; }
+  .cv-job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+  .cv-job-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .cv-job-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+    white-space: nowrap;
+    margin-left: 12px;
+  }
+  .cv-job-company {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--blue-light);
+    margin-bottom: 8px;
+  }
+  .cv-job ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .cv-job li {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding-left: 14px;
+    position: relative;
+  }
+  .cv-job li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--blue-light);
+    font-size: 10px;
+    top: 3px;
+  }
+
+  /* PROJECT */
+  .cv-project {
+    background: rgba(0,212,255,0.05);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .cv-project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .cv-project-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .cv-project-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--blue-light);
+    text-decoration: none;
+  }
+  .cv-project-link:hover { color: var(--accent); }
+  .cv-project-desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* SKILLS */
+  .cv-skills { display: flex; flex-direction: column; gap: 8px; }
+  .cv-skill-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+  .cv-skill-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text);
+    background: rgba(26,86,160,0.2);
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .cv-skill-list {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding-top: 3px;
+  }
+
+  /* CERTS */
+  .cv-certs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cv-cert {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 5px 12px;
+    background: rgba(26,86,160,0.15);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-muted);
+  }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* FOOTER */
+
+  .cv-certs-grouped { display: flex; flex-direction: column; gap: 14px; }
+  .cv-cert-group { display: flex; flex-direction: column; gap: 6px; }
+  .cv-cert-group-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  .cv-footer {
+    background: rgba(26,86,160,0.08);
+    border-top: 1px solid var(--border);
+    padding: 14px 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cv-footer-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+  }
+  .cv-footer-text span { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div style="max-width:860px; margin:0 auto;">
+  <a class="back-btn" href="index.html">← Voltar ao Portfólio</a>
+</div>
+
+<div class="cv-wrap">
+
+  <!-- HEADER -->
+  <div class="cv-header">
+    <div class="cv-name">CAIQUE VACCARI MURACA</div>
+    <div class="cv-title">Analista de BI | <span>Business Intelligence Comercial</span> · Power BI · Produto &amp; Vendas</div>
+    <div class="cv-contacts">
+      <a class="cv-contact" href="mailto:cavaccari@gmail.com">cavaccari@gmail.com</a>
+      <span class="cv-contact">(11) 95078-0994</span>
+      <span class="cv-contact">São Paulo, SP</span>
+      <a class="cv-contact" href="https://linkedin.com/in/caiquevaccari" target="_blank">linkedin.com/in/caiquevaccari</a>
+      <a class="cv-contact" href="https://dadopronto.lovable.app" target="_blank">dadopronto.lovable.app</a>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="cv-body">
+
+    <!-- RESUMO -->
+    <div class="cv-section">
+      <div class="cv-section-title">Resumo Profissional</div>
+      <p class="cv-summary">
+        Analista de BI com mais de 5 anos de experiência transformando dados em inteligência comercial e de produto para suporte à tomada de decisão — do nível operacional à diretoria. Especializado em Power BI com foco em storytelling, modelagem de dados e KPIs estratégicos. Histórico sólido na migração de processos manuais em Excel para ecossistemas de BI automatizados. Criador do DadoPronto, plataforma de dashboards com IA integrada para usuários não técnicos.
+      </p>
+    </div>
+
+    <!-- EXPERIÊNCIA -->
+    <div class="cv-section">
+      <div class="cv-section-title">Experiência Profissional</div>
+
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Analista de Inteligência Pleno</div>
+          <div class="cv-job-period">2025 – Atual</div>
+        </div>
+        <div class="cv-job-company">EHTL Viagens · São Paulo</div>
+        <ul>
+          <li>Desenvolvimento de dashboards estratégicos em Power BI para Vendas, Produto, RH e Operações, com storytelling para públicos operacionais e C-level.</li>
+          <li>Liderança na migração de processos manuais em Excel para ecossistema de BI automatizado, impactando velocidade e qualidade das análises internas.</li>
+          <li>Criação de dashboards de Hotelaria Nacional e Internacional utilizados diretamente nas negociações com fornecedores — KPIs de contratação, precificação e performance de portfólio.</li>
+          <li>Visões analíticas para campanhas internas com KPIs de adesão e engajamento, permitindo monitorar performance em tempo real e embasar decisões de campanhas futuras.</li>
+          <li>Dashboard de RH com integração via API ao sistema de ponto eletrônico — visões automatizadas de turnover, absenteísmo e headcount.</li>
+        </ul>
+      </div>
+
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Assistente de Inteligência</div>
+          <div class="cv-job-period">2023 – 2024</div>
+        </div>
+        <div class="cv-job-company">EHTL Viagens · São Paulo</div>
+        <ul>
+          <li>Gestão de reporting comercial com extração diária de dados e elaboração de relatórios de vendas com interface direta com a diretoria.</li>
+          <li>Apoio técnico na construção e manutenção de dashboards, contribuindo para a transição gradual do Excel para o ambiente de BI.</li>
+          <li>Criação de relatórios operacionais e analíticos para suporte à tomada de decisão nas áreas comerciais.</li>
+        </ul>
+      </div>
+
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Assistente Financeiro</div>
+          <div class="cv-job-period">2020 – 2022</div>
+        </div>
+        <div class="cv-job-company">EHTL Viagens · São Paulo</div>
+        <ul>
+          <li>Auditoria de faturas de hotelaria e locação com conciliação e validação de dados financeiros.</li>
+          <li>Resolução de divergências com fornecedores e clientes, desenvolvendo visão analítica sobre processos financeiros do setor de turismo.</li>
+        </ul>
+      </div>
+
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Analista Operacional</div>
+          <div class="cv-job-period">2017 – 2019</div>
+        </div>
+        <div class="cv-job-company">Grupo Flytour · São Paulo</div>
+        <ul>
+          <li>Suporte tecnológico em plataformas de gestão de viagens corporativas B2B, com implementação, configuração e treinamentos presenciais e remotos.</li>
+          <li>Apoio à área de marketing em ações sazonais — primeiro contato com análise de dados e performance de campanhas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PROJETO -->
+    <div class="cv-section">
+      <div class="cv-section-title">Projeto</div>
+      <div class="cv-project">
+        <div class="cv-project-header">
+          <div class="cv-project-name">DadoPronto — Plataforma de Dashboards Automáticos com IA</div>
+          <a class="cv-project-link" href="https://dadopronto.lovable.app" target="_blank">dadopronto.lovable.app ↗</a>
+        </div>
+        <div class="cv-project-desc">
+          Desenvolvimento de plataforma de BI para geração automática de dashboards com modelos de dados padronizados. Design focado em usuários não técnicos com cases para Vendas, RH e Financeiro. Integração de IA para automação de processos e geração de insights rápidos.
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPETÊNCIAS + CERTS -->
+    <div class="two-col">
+      <div class="cv-section">
+        <div class="cv-section-title">Competências</div>
+        <div class="cv-skills">
+          <div class="cv-skill-row">
+            <div class="cv-skill-label">BI & Visualização</div>
+            <div class="cv-skill-list">Power BI · DAX · Power Query · Visualização de Dados · Storytelling</div>
+          </div>
+          <div class="cv-skill-row">
+            <div class="cv-skill-label">Dados & Modelagem</div>
+            <div class="cv-skill-list">Modelagem de Dados · ETL · SQL · Excel Avançado · APIs</div>
+          </div>
+          <div class="cv-skill-row">
+            <div class="cv-skill-label">Estratégia</div>
+            <div class="cv-skill-list">KPIs · Inteligência de Mercado · Inteligência Comercial</div>
+          </div>
+          <div class="cv-skill-row">
+            <div class="cv-skill-label">Tecnologia</div>
+            <div class="cv-skill-list">IA Generativa · Automação de Processos</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="cv-section">
+          <div class="cv-section-title">Certificações</div>
+          <div class="cv-certs">
+            <span class="cv-cert">Storytelling & Viz 2.0</span>
+            <span class="cv-cert">Databricks com Spark</span>
+            <span class="cv-cert">Estatística p/ Análise</span>
+            <span class="cv-cert">Power Query Avançado</span>
+            <span class="cv-cert">Modelagem Avançada</span>
+          </div>
+        </div>
+        <div class="cv-section" style="margin-top:24px;">
+          <div class="cv-section-title">Idiomas</div>
+          <p style="font-size:13px; color:var(--text-muted); margin-top:8px;">
+            Português <span style="color:var(--accent2)">Nativo</span> &nbsp;·&nbsp; Inglês <span style="color:#FF9500">Intermediário</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="cv-footer">
+    <div class="cv-footer-text">CAIQUE VACCARI MURACA · <span>ANALISTA DE BI</span> · 2026</div>
+    <div class="cv-footer-text">cavaccari@gmail.com · <span>linkedin.com/in/caiquevaccari</span></div>
+  </div>
+
+</div>
+
+</body>
+</html>
